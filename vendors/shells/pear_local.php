@@ -42,7 +42,7 @@ class PearLocalShell extends Shell {
 
         $this->_setArgs();
 
-        $command = 'pear config-create ' . $this->baseDir . ' pear.conf';
+        $command = 'pear config-create ' . $this->baseDir . ' ' . $this->baseDir . 'pear.conf';
         system($command);
         $command = 'pear -c ' . $this->baseDir . 'pear.conf channel-discover ' . $this->channel;
         system($command);
