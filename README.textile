@@ -1,0 +1,4 @@
+h1. PEAR Local install plugin for CakePHP
+
+This plugin is inspired by pear-local command (Ethna), see http://ethna.jp/
+
