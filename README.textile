@@ -2,9 +2,10 @@ h1. PEAR Local install plugin for CakePHP
 
 This plugin is inspired by pear-local command ( "Ethna":http://ethna.jp/ ).
 
-h2. Commands
+h2. Command
 
-@cake pear_local@
+example
+@cake pear_local install Net_UserAgent_Mobile@
 
 h2. Lisence
 
