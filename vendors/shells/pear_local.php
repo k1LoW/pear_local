@@ -44,21 +44,23 @@ class PearLocalShell extends Shell {
 
         $command = 'pear config-create ' . $this->baseDir . ' pear.conf';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf channel-discover ' .  $this->channel;
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf channel-discover ' . $this->channel;
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set bin_dir ' .  $this->baseDir . 'pear/bin';
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set bin_dir ' . $this->baseDir . 'pear/bin';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set php_dir ' .  $this->baseDir . 'pear/';
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set php_dir ' . $this->baseDir . 'pear/';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set data_dir ' .  $this->baseDir . 'pear/data';
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set data_dir ' . $this->baseDir . 'pear/data';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set cache_dir ' .  TMP . 'pear';
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set cache_dir ' . TMP . 'pear';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set doc_dir ' .  $this->baseDir . 'pear/data';
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set doc_dir ' . $this->baseDir . 'pear/data';
         system($command);
         $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set download_dir /tmp/pear/build';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set test_dir ' .  $this->baseDir . 'pear/test';
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set ext_dir' . $this->baseDir . 'pear/ext';
+        system($command);
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set test_dir ' . $this->baseDir . 'pear/test';
         system($command);
 
         $code = '<?php ini_set(\'include_path\', dirname(__FILE__) . PATH_SEPARATOR . get_include_path());';
