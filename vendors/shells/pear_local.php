@@ -63,7 +63,7 @@ class PearLocalShell extends Shell {
         $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set test_dir ' . $this->baseDir . 'pear/test';
         system($command);
 
-        $code = '<?php ini_set(\'include_path\', dirname(__FILE__) . PATH_SEPARATOR . get_include_path());';
+        $code = '<?php set_include_path(dirname(__FILE__) . PATH_SEPARATOR . get_include_path());';
         $fp  =  new File($this->baseDir . 'pear/pear_init.php');
         $fp->write($code);
         $fp->close();
