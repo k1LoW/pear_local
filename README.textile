@@ -1,4 +1,11 @@
 h1. PEAR Local install plugin for CakePHP
 
-This plugin is inspired by pear-local command (Ethna), see http://ethna.jp/
+This plugin is inspired by pear-local command ( "Ethna":http://ethna.jp/ ).
 
+h2. Commands
+
+@cake pear_local@
+
+h2. Lisence
+
+The MIT Lisence
