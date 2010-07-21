@@ -46,25 +46,25 @@ class PearLocalShell extends Shell {
         system($command);
         $command = 'pear -c ' . $this->baseDir . 'pear.conf channel-discover ' . $this->channel;
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set bin_dir ' . $this->baseDir . 'pear/bin';
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set bin_dir ' . $this->baseDir . 'pear' . DS . 'bin';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set php_dir ' . $this->baseDir . 'pear/';
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set php_dir ' . $this->baseDir . 'pear' . DS;
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set data_dir ' . $this->baseDir . 'pear/data';
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set data_dir ' . $this->baseDir . 'pear' . DS . 'data';
         system($command);
         $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set cache_dir ' . TMP . 'pear';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set doc_dir ' . $this->baseDir . 'pear/data';
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set doc_dir ' . $this->baseDir . 'pear' . DS . 'data';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set download_dir /tmp/pear/build';
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set download_dir ' . DS . 'tmp' . DS . 'pear' . DS . 'build';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set ext_dir' . $this->baseDir . 'pear/ext';
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set ext_dir' . $this->baseDir . 'pear' . DS . 'ext';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set test_dir ' . $this->baseDir . 'pear/test';
+        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set test_dir ' . $this->baseDir . 'pear' . DS . 'test';
         system($command);
 
         $code = '<?php set_include_path(dirname(__FILE__) . PATH_SEPARATOR . get_include_path());';
-        $fp  =  new File($this->baseDir . 'pear/pear_init.php');
+        $fp  =  new File($this->baseDir . 'pear' . DS . 'pear_init.php');
         $fp->write($code);
         $fp->close();
 
@@ -85,7 +85,7 @@ class PearLocalShell extends Shell {
         $out = $fp->read();
 
         $imports = array();
-        $imports[] = 'App::import(\'Vendor\', \'pear/pear_init\');';
+        $imports[] = 'App::import(\'Vendor\', \'pear\' . DS . \'pear_init\');';
 
         if (!empty($this->args)) {
             foreach ($this->args as $value) {
@@ -124,7 +124,7 @@ class PearLocalShell extends Shell {
      */
     function _setArgs(){
         $this->channel = empty($this->params['c']) ? 'pear.php.net' : $this->params['c'];
-        $this->baseDir = empty($this->params['b']) ? APP_PATH . 'vendors/' : $this->params['b'];
+        $this->baseDir = empty($this->params['b']) ? APP_PATH . 'vendors' . DS : $this->params['b'];
     }
 
     /**
