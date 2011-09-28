@@ -7,17 +7,22 @@
    * @copyright Copyright 2010, 101000code/101000LAB (http://code.101000lab.org/)
    * @author Kenichirou Oyama
    */
+App::uses('Shell', 'Console');
 class PearLocalShell extends Shell {
     var $tasks = array();
     var $channel;
     var $baseDir;
+
+    public function startup() {
+        parent::startup();
+    }
 
     /**
      * main
      *
      * @return
      */
-    function main(){
+    public function main(){
         $this->_setArgs();
 
         if (!file_exists($this->baseDir . 'pear.conf')) {
@@ -37,7 +42,7 @@ class PearLocalShell extends Shell {
      *
      * @return
      */
-    function init(){
+    public function init(){
         $this->out(__('PEAR Initialize..', true));
 
         $this->_setArgs();
@@ -78,9 +83,9 @@ class PearLocalShell extends Shell {
      * @param $code
      * @return
      */
-    function writeBootstrap(){
+    public function writeBootstrap(){
         $this->out(__('Writeing bootstrap.php ', true) . '...');
-        $bootstrapPath = APP_PATH . 'config/bootstrap.php';
+        $bootstrapPath = APP . 'Config/bootstrap.php';
         $fp  =  new File($bootstrapPath);
         $out = $fp->read();
 
@@ -122,9 +127,9 @@ class PearLocalShell extends Shell {
      *
      * @return
      */
-    function _setArgs(){
+    private function _setArgs(){
         $this->channel = empty($this->params['c']) ? 'pear.php.net' : $this->params['c'];
-        $this->baseDir = empty($this->params['b']) ? APP_PATH . 'vendors' . DS : $this->params['b'];
+        $this->baseDir = empty($this->params['b']) ? APP . 'Vendor' . DS : $this->params['b'];
     }
 
     /**
@@ -132,7 +137,7 @@ class PearLocalShell extends Shell {
      *
      * @return
      */
-    function _welcome(){
+    protected function _welcome(){
         $this->out(__('PEAR Local for CakePHP', true));
         $this->hr();
     }

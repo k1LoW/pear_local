@@ -2,10 +2,25 @@ h1. PEAR Local install plugin for CakePHP
 
 This plugin is inspired by pear-local command ( "Ethna":http://ethna.jp/ ).
 
+h2. Requirements
+
+* PHP >= 5.2.6
+* CakePHP >= 2.0
+
+h2. Usage
+
+Put `PearLocal' directory on app/Plugin in your CakePHP application.
+Then, add the following code in bootstrap.php
+
+<pre>
+<?php
+    CakePlugin::load('PearLocal');
+</pre>
+
 h2. Command
 
 example
-@cake pear_local install Net_UserAgent_Mobile@
+@cake PearLocal.pear_local install Net_UserAgent_Mobile@
 
 h2. Lisence
 
