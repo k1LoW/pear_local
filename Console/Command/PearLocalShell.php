@@ -9,9 +9,10 @@
    */
 App::uses('Shell', 'Console');
 class PearLocalShell extends Shell {
-    var $tasks = array();
-    var $channel;
-    var $baseDir;
+    public $tasks = array();
+    public $channel;
+    private $binPath = 'pear';
+    private $baseDir;
 
     public function startup() {
         parent::startup();
@@ -30,7 +31,10 @@ class PearLocalShell extends Shell {
         }
 
         if (!empty($this->args)) {
-            $command = 'pear -c ' . $this->baseDir . 'pear.conf ' . implode(' ' , $this->args);
+            if (file_exists($this->baseDir . 'pear' . DS . 'bin' . DS . 'pear')) {
+                $this->binPath = $this->baseDir . 'pear' . DS . 'bin' . DS . 'pear';
+            }
+            $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf ' . implode(' ' , $this->args);
             system($command);
         }
 
@@ -47,25 +51,25 @@ class PearLocalShell extends Shell {
 
         $this->_setArgs();
 
-        $command = 'pear config-create ' . $this->baseDir . ' ' . $this->baseDir . 'pear.conf';
+        $command = $this->binPath . ' config-create ' . $this->baseDir . ' ' . $this->baseDir . 'pear.conf';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf channel-discover ' . $this->channel;
+        $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf channel-discover ' . $this->channel;
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set bin_dir ' . $this->baseDir . 'pear' . DS . 'bin';
+        $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf config-set bin_dir ' . $this->baseDir . 'pear' . DS . 'bin';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set php_dir ' . $this->baseDir . 'pear' . DS;
+        $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf config-set php_dir ' . $this->baseDir . 'pear' . DS;
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set data_dir ' . $this->baseDir . 'pear' . DS . 'data';
+        $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf config-set data_dir ' . $this->baseDir . 'pear' . DS . 'data';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set cache_dir ' . TMP . 'pear';
+        $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf config-set cache_dir ' . TMP . 'pear';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set doc_dir ' . $this->baseDir . 'pear' . DS . 'data';
+        $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf config-set doc_dir ' . $this->baseDir . 'pear' . DS . 'data';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set download_dir ' . DS . 'tmp' . DS . 'pear' . DS . 'build';
+        $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf config-set download_dir ' . DS . 'tmp' . DS . 'pear' . DS . 'build';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set ext_dir' . $this->baseDir . 'pear' . DS . 'ext';
+        $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf config-set ext_dir' . $this->baseDir . 'pear' . DS . 'ext';
         system($command);
-        $command = 'pear -c ' . $this->baseDir . 'pear.conf config-set test_dir ' . $this->baseDir . 'pear' . DS . 'test';
+        $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf config-set test_dir ' . $this->baseDir . 'pear' . DS . 'test';
         system($command);
 
         $code = '<?php set_include_path(dirname(__FILE__) . PATH_SEPARATOR . get_include_path());';
