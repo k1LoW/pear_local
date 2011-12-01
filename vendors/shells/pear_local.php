@@ -140,4 +140,4 @@ class PearLocalShell extends Shell {
         $this->out(__('PEAR Local for CakePHP', true));
         $this->hr();
     }
-  }
+}
