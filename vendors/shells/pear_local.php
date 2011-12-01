@@ -42,7 +42,7 @@ class PearLocalShell extends Shell {
      * @return
      */
     function init(){
-        $this->out(__($THIS->BINPATH . ' Initialize..', true));
+        $this->out(__($this->binPath . ' Initialize..', true));
 
         $this->_setArgs();
 
