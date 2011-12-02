@@ -42,7 +42,7 @@ class PearLocalShell extends Shell {
      * @return
      */
     function init(){
-        $this->out(__($THIS->BINPATH . ' Initialize..', true));
+        $this->out(__($this->binPath . ' Initialize..', true));
 
         $this->_setArgs();
 
@@ -62,7 +62,7 @@ class PearLocalShell extends Shell {
         system($command);
         $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf config-set download_dir ' . DS . 'tmp' . DS . 'pear' . DS . 'build';
         system($command);
-        $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf config-set ext_dir' . $this->baseDir . 'pear' . DS . 'ext';
+        $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf config-set ext_dir ' . $this->baseDir . 'pear' . DS . 'ext';
         system($command);
         $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf config-set test_dir ' . $this->baseDir . 'pear' . DS . 'test';
         system($command);
@@ -140,4 +140,4 @@ class PearLocalShell extends Shell {
         $this->out(__('PEAR Local for CakePHP', true));
         $this->hr();
     }
-  }
+}
