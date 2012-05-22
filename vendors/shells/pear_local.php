@@ -21,14 +21,15 @@ class PearLocalShell extends Shell {
     function main(){
         $this->_setArgs();
 
+        if (file_exists($this->baseDir . 'pear' . DS . 'bin' . DS . 'pear')) {
+            $this->binPath = $this->baseDir . 'pear' . DS . 'bin' . DS . 'pear';
+        }
+
         if (!file_exists($this->baseDir . 'pear.conf')) {
             $this->init();
         }
 
         if (!empty($this->args)) {
-            if (file_exists($this->baseDir . 'pear' . DS . 'bin' . DS . 'pear')) {
-                $this->binPath = $this->baseDir . 'pear' . DS . 'bin' . DS . 'pear';
-            }
             $command = $this->binPath . ' -c ' . $this->baseDir . 'pear.conf ' . implode(' ' , $this->args);
             system($command);
         }
